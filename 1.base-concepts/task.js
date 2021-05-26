@@ -1,23 +1,24 @@
 'use strict';
 
 function solveEquation(a, b, c) {
-  let arr;
-  // код для задачи №1 писать здесь
-  let discriminantis = Math.pow(b, 2) - (4 * a * c);
+  let arr = [];
+
+  let discriminantis = (b ** 2) - (4 * a * c);
+  let denominator = 2 * a;
+  let parametr = (-(b));
 
   if (discriminantis > 0) {
     let rootOfDiscriminantis = Math.sqrt(discriminantis);
-    let valueOne = ((-(b)) + rootOfDiscriminantis) / (2 * a);
-    let valueTwo = ((-(b)) - rootOfDiscriminantis) / (2 * a);
+    let valueOne = (parametr + rootOfDiscriminantis) / denominator;
+    let valueTwo = (parametr - rootOfDiscriminantis) / denominator;
 
-    return arr.push(valueOne, valueTwo);
+    arr.push(valueOne, valueTwo);
   } else if (discriminantis === 0) {
-    let value = (-(b)) / (2 * a)
+    let value = parametr / denominator;
 
-    return arr.push(value);
-  } else {
-    return arr;
+    arr.push(value);
   }
+  return arr;
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
