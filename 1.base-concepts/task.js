@@ -1,24 +1,14 @@
 'use strict';
 
 function solveEquation(a, b, c) {
-  let arr = [];
+  const discriminantis = (b ** 2) - (4 * a * c);
 
-  let discriminantis = (b ** 2) - (4 * a * c);
-  let denominator = 2 * a;
-  let parametr = (-(b));
-
-  if (discriminantis > 0) {
-    let rootOfDiscriminantis = Math.sqrt(discriminantis);
-    let valueOne = (parametr + rootOfDiscriminantis) / denominator;
-    let valueTwo = (parametr - rootOfDiscriminantis) / denominator;
-
-    arr.push(valueOne, valueTwo);
-  } else if (discriminantis === 0) {
-    let value = parametr / denominator;
-
-    arr.push(value);
+  if (discriminant > 0) {
+    return [(- b + Math.sqrt(discriminant)) / (2 * a), (- b - Math.sqrt(discriminant)) / (2 * a)];
+  } else if (discriminant === 0) {
+    return [- b / (2 * a)];
   }
-  return arr;
+  return [];
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
