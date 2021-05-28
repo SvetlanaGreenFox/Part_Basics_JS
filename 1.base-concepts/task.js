@@ -36,7 +36,7 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
   let amountCredit = parametrs[2][1];
   let creditPeriod = numberMonths(date);
 
-  let percentCredit = Number(percent / 100);
+  // let percentCredit = Number(percent / 100);
   // let contributionCredit = Number(contribution);
   // let amountCredit = Number(amount);
 
