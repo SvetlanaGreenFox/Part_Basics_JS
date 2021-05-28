@@ -13,11 +13,38 @@ function solveEquation(a, b, c) {
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
   let totalAmount;
-  let percentCredit = Number(percent / 100);
-  let contributionCredit = Number(contribution);
-  let amountCredit = Number(amount);
+  //Проверка данных
 
+  const parametrs = [
+    ['Процентная ставка', percent],
+    ['Первоначальный взнос', contribution],
+    ['Сумма кредита', amount]
+  ];
+
+  for (let i = 0; i < parametrs.length; i++) {
+    const arr = parametrs[i];
+    const nameParametr = arr[0];
+    const valueParametr = arr[1];
+    if (Number.isNaN(valueParametr)) {
+      console.log(`Параметр ${nameParametr} содержит неправильное значение ${valueParametr}`);
+      valueParametr = Number(valueParametr);
+      return valueParametr;
+    }
+  }
+
+  let percentCredit = (parametrs[0][1]) / 100;
+  let contributionCredit = parametrs[1][1];
+  let amountCredit = parametrs[2][1];
   let creditPeriod = numberMonths(date);
+
+  let percentCredit = Number(percent / 100);
+  // let contributionCredit = Number(contribution);
+  // let amountCredit = Number(amount);
+
+  // let creditPeriod = numberMonths(date);
+
+  //Конец Проверки
+
   let p = percentCredit / 12;
 
   let bodyCredit = amountCredit - contributionCredit;
