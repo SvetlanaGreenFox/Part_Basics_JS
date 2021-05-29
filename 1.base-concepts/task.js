@@ -14,12 +14,14 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
   let totalAmount;
   //Проверка данных
 
+  const parametrs = [
+    ['Процентная ставка', percent],
+    ['Первоначальный взнос', contribution],
+    ['Сумма кредита', amount]
+  ];
+
   for (let i = 0; i < parametrs.length; i++) {
-    const parametrs = [
-      ['Процентная ставка', percent],
-      ['Первоначальный взнос', contribution],
-      ['Сумма кредита', amount]
-    ];
+
     const arr = parametrs[i];
     const nameParametr = arr[0];
     const valueParametr = arr[1];
