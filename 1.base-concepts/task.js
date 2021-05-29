@@ -14,47 +14,34 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
   let totalAmount;
   //Проверка данных
 
-  const parametrs = [
-    ['Процентная ставка', percent],
-    ['Первоначальный взнос', contribution],
-    ['Сумма кредита', amount]
-  ];
-
   for (let i = 0; i < parametrs.length; i++) {
+    const parametrs = [
+      ['Процентная ставка', percent],
+      ['Первоначальный взнос', contribution],
+      ['Сумма кредита', amount]
+    ];
     const arr = parametrs[i];
     const nameParametr = arr[0];
     const valueParametr = arr[1];
-    if (Number.isNaN(valueParametr)) {
-      console.log(`Параметр ${nameParametr} содержит неправильное значение ${valueParametr}`);
-      valueParametr = Number(valueParametr);
-      return valueParametr;
+
+    if (isNaN(valueParametr)) {
+      return `Параметр ${nameParametr} содержит неправильное значение ${valueParametr}`;
     }
   }
 
-  let percentCredit = (parametrs[0][1]) / 100;
-  let contributionCredit = parametrs[1][1];
-  let amountCredit = parametrs[2][1];
+  let percentCredit = (percent) / 100;
   let creditPeriod = numberMonths(date);
-
-  // let percentCredit = Number(percent / 100);
-  // let contributionCredit = Number(contribution);
-  // let amountCredit = Number(amount);
-
-  // let creditPeriod = numberMonths(date);
 
   //Конец Проверки
 
   let p = percentCredit / 12;
 
-  let bodyCredit = amountCredit - contributionCredit;
+  let bodyCredit = amount - contribution;
   let creditPayment = bodyCredit * (p + p / (((1 + p) ** creditPeriod) - 1));
-  // totalAmount = (contributionCredit + (creditPayment * creditPeriod)).toFixed(2));
 
-  let freeAmount = amountCredit / creditPeriod;
-  let freePercent = creditPayment - freeAmount;
-  let allPercent = freePercent * creditPeriod;
+  let allPercent = (creditPayment - (amount / creditPeriod)) * creditPeriod;
 
-  totalAmount = Number((amountCredit + allPercent).toFixed(2));
+  totalAmount = Number((amount + allPercent).toFixed(2));
 
   console.log(totalAmount);
   return totalAmount;
