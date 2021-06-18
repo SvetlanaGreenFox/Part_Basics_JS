@@ -13,8 +13,8 @@ Student.prototype.setSubject = function (subjectName) {
 Student.prototype.addMark = function (mark) {
   if (this.marks === undefined) {
     this.marks = [];
-    this.marks.push(mark);
   }
+  this.marks.push(mark);
 }
 
 Student.prototype.addMarks = function (...marks) {
@@ -26,10 +26,13 @@ Student.prototype.addMarks = function (...marks) {
 
 Student.prototype.getAverage = function () {
   let count = 0;
-  let average = count / this.marks.length;
+
   for (let i = 0; i < this.marks.length; i++) {
     count = count + this.marks[i];
   }
+
+  let average = Math.floor(count / this.marks.length);
+
   return average;
 }
 
