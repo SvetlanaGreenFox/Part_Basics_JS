@@ -5,7 +5,7 @@ class PrintEditionItem {
         this.releaseDate = releaseDate;
         this.pagesCount = pagesCount;
         this.state = 100;
-        this.style = null;
+        this.type = null;
     }
 
     fix() {
@@ -31,7 +31,7 @@ class Magazine extends PrintEditionItem {
 
     constructor(name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
-        this.style = 'magazin';
+        this.type = 'magazin';
     }
 
 }
@@ -41,7 +41,7 @@ class Book extends PrintEditionItem {
     constructor(author, name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
         this.author = author;
-        this.style = 'book';
+        this.type = 'book';
     }
 }
 
@@ -49,21 +49,21 @@ class FantasticBook extends Book {
 
     constructor(author, name, releaseDate, pagesCount) {
         super(author, name, releaseDate, pagesCount);
-        this.style = 'fantastic';
+        this.type = 'fantastic';
     }
 }
 
 class DetectiveBook extends Book {
     constructor(author, name, releaseDate, pagesCount) {
         super(author, name, releaseDate, pagesCount);
-        this.style = 'detective';
+        this.type = 'detective';
     }
 }
 
 class NovelBook extends Book {
     constructor(author, name, releaseDate, pagesCount) {
         super(author, name, releaseDate, pagesCount);
-        this.style = 'novel';
+        this.type = 'novel';
     }
 }
 
@@ -75,33 +75,30 @@ class Library {
     }
 
     addBook(book) {
-        if (this.state > 30) {
+        if (book._state > 30) {
             this.books.push(book);
         }
     }
 
     findBookBy(type, value) {
-        for (let i = 0; i < library.books.length; i++) {
-            let parametr = library.books[i];
-            for (let i = 0; i < parametr.length; i++) {
-                if (parametr[i] === value) {
-                    console.log(parametr.name);
-                    return this.name;
-                } else {
-                    return 'null';
+        for (let i = 0; i < this.books.length; i++) {
+            let book = this.books[i];
+            for (let key in book) {
+                if (key === type && book[key] === value) {
+                    return book.name;
                 }
             }
+            return 'null';
         }
     }
 
     giveBookByName(bookName) {
-        for (let i = 0; i < library.books.length; i++) {
-            let parametr = library.books[i];
-            if (parametr.name === bookName) {
-                delete parametr;
-                return parametr;
+        for (let key in this.books) {
+            if (this.books[key].name === bookName) {
+                delete this.books[key];
+                return bookName;
             } else {
-                return 'null';
+                return "null";
             }
         }
     }
