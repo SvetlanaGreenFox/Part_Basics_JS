@@ -1,6 +1,21 @@
 //Задание 1
 
+function parseCount(value) {
+    let count = Number.parseInt(value, 10);
+    if (isNaN(count)) {
+        throw new Error('Невалидное значение');
+    }
 
+    return count;
+}
+
+function validateCount(value) {
+    try {
+        return parseCount(value);
+    } catch (err) {
+        return err;
+    }
+}
 
 
 //Задание 2
