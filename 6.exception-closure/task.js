@@ -1,3 +1,10 @@
+//Задание 1
+
+
+
+
+//Задание 2
+
 class Triangle {
 
     constructor(a, b, c) {
