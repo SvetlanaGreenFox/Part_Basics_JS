@@ -85,21 +85,21 @@ class Library {
             let book = this.books[i];
             for (let key in book) {
                 if (key === type && book[key] === value) {
-                    return book.name;
+                    return this.books[i];
                 }
             }
-            return 'null';
         }
+        return null;
     }
 
     giveBookByName(bookName) {
         for (let key in this.books) {
             if (this.books[key].name === bookName) {
-                delete this.books[key];
-                return bookName;
-            } else {
-                return "null";
+                this.books.splice[key];
+                return this.books[key];
             }
         }
+
+        return null;
     }
 }
