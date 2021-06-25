@@ -33,14 +33,15 @@ class Triangle {
     }
 
     getPerimeter() {
-        this.perimeter = this.a + this.b + this.c;
-        return this.perimeter;
+        let perimeter = this.a + this.b + this.c;
+        return perimeter;
     }
 
     getArea() {
         let halfPerimetr = this.perimeter / 2;
-        this.area = Math.sqrt(halfPerimetr * (halfPerimetr - this.a) * (halfPerimetr - this.b) * (halfPerimetr - this.c)).toFixed(3);
-
+        let area = Math.sqrt(halfPerimetr * (halfPerimetr - this.a) * (halfPerimetr - this.b) * (halfPerimetr - this.c)).toFixed(3);
+        let areaNumber = Number(area);
+        return areaNumber;
     }
 }
 
@@ -49,7 +50,8 @@ function getTriangle(a, b, c) {
         return new Triangle(a, b, c);
     } catch (err) {
         return {
-
+            getPerimetr: (text) => { return text },
+            getArea: (text) => { return text }
         }
     }
 }
