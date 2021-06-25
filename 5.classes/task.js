@@ -31,7 +31,7 @@ class Magazine extends PrintEditionItem {
 
     constructor(name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
-        this.type = 'magazin';
+        this.type = 'magazine';
     }
 
 }
@@ -85,7 +85,7 @@ class Library {
             let book = this.books[i];
             for (let key in book) {
                 if (key === type && book[key] === value) {
-                    return this.books[i];
+                    return book;
                 }
             }
         }
@@ -95,8 +95,7 @@ class Library {
     giveBookByName(bookName) {
         for (let key in this.books) {
             if (this.books[key].name === bookName) {
-                this.books.splice[key];
-                return this.books[key];
+                return this.books.splice([key], 1);
             }
         }
 
