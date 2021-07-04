@@ -1,27 +1,23 @@
 function cachingDecoratorNew(func) {
-  // Ваш код
   let cash = [];
 
   function wrapper(...args) {
-    const hash = args.join(' , ');
-
-    if (hash in cash) {
-      return `вернуть из кэша:${cash[hash]}`;
+    const hash = args.join(' , '); // получаем правильный хэш
+    let idx = cash.findIndex((item) => item.hash === hash); // ищем элемент, хэш которого равен нашему хэшу
+    if (idx !== -1) { // если элемент не найден
+      console.log("Из кэша: " + cash[idx].result); // индекс нам известен, по индексу в массиве лежит объект, как получить нужное значение?
+      return "Из кэша: " + cash[idx].result;
     } else {
       const result = func(...args);
-      console.log(result);
-
       cash.push({ hash, result });
-      if (cash.length === 5) {
+      if (cash.length > 5) {
         cash.shift();
       }
 
       console.log(cash);
-      return `вычисляем:${result}`;
+      return `Вычисляем: ${result}`;
     }
   }
-
-
 
   return wrapper;
 }
