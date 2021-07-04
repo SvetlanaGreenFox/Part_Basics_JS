@@ -2,10 +2,9 @@ function cachingDecoratorNew(func) {
   let cash = [];
 
   function wrapper(...args) {
-    const hash = args.join(' , '); // получаем правильный хэш
-    let idx = cash.findIndex((item) => item.hash === hash); // ищем элемент, хэш которого равен нашему хэшу
-    if (idx !== -1) { // если элемент не найден
-      console.log("Из кэша: " + cash[idx].result); // индекс нам известен, по индексу в массиве лежит объект, как получить нужное значение?
+    const hash = args.join(' , ');
+    let idx = cash.findIndex((item) => item.hash === hash);
+    if (idx !== -1) {
       return "Из кэша: " + cash[idx].result;
     } else {
       const result = func(...args);
@@ -23,8 +22,26 @@ function cachingDecoratorNew(func) {
 }
 
 
-function debounceDecoratorNew(func) {
+function debounceDecoratorNew(func, ms) {
   // Ваш код
+  let flag = false;
+  let lastArgs;
+  let timer;
+
+  function wrapper(...args) {
+    if (!flag) {
+      func(...args);
+      flag = true;
+    }
+
+    clearTimeout(timer);
+    lastArgs = args;
+    timer = setTimeout(() => {
+      func(...args);
+    }, ms)
+  }
+
+  return wrapper;
 }
 
 function debounceDecorator2(func) {
