@@ -44,7 +44,7 @@ function debounceDecoratorNew(func, ms) {
   return wrapper;
 }
 
-function debounceDecorator2(func, ms) {
+function debounceDecoratorNew(func, ms) {
   // Ваш код
   let flag = false;
   let lastArgs;
@@ -68,5 +68,4 @@ function debounceDecorator2(func, ms) {
   }
   wrapper.count = [count];
   return wrapper;
-}
 }
