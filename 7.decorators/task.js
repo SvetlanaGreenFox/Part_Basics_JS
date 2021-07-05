@@ -61,6 +61,6 @@ function debounceDecoratorNew(func, ms) {
     console.log(count);
 
   }
-  wrapper.count = [];
+  wrapper.count = [count];
   return wrapper;
 }
