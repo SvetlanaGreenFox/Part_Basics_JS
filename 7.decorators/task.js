@@ -25,8 +25,6 @@ function cachingDecoratorNew(func) {
 function debounceDecoratorNew(func, ms) {
   // Ваш код
   let flag = false;
-  let lastArgs;
-  let timer;
 
   function wrapper(...args) {
     if (!flag) {
@@ -34,10 +32,8 @@ function debounceDecoratorNew(func, ms) {
       flag = true;
     }
 
-    clearTimeout(timer);
-    lastArgs = args;
-    timer = setTimeout(() => {
-      func(...args);
+    let timer = setTimeout(() => {
+      flag = false;
     }, ms)
   }
 
@@ -47,25 +43,24 @@ function debounceDecoratorNew(func, ms) {
 function debounceDecoratorNew(func, ms) {
   // Ваш код
   let flag = false;
-  let lastArgs;
-  let timer;
   let count = 0;
 
   function wrapper(...args) {
+    count = count + 1;
+
     if (!flag) {
       func(...args);
+
       flag = true;
     }
 
-    count += 1;
-    clearTimeout(timer);
-    lastArgs = args;
-    timer = setTimeout(() => {
-      func(...args);
-
+    let timer = setTimeout(() => {
+      flag = false;
     }, ms)
 
+    console.log(count);
+
   }
-  wrapper.count = [count];
+  wrapper.count = [];
   return wrapper;
 }
