@@ -57,7 +57,6 @@ function debounceDecoratorNew(func, ms) {
       flag = false;
     }, ms)
 
-    console.log(count);
 
   }
 
