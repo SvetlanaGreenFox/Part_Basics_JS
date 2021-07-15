@@ -14,8 +14,9 @@ class AlarmClock {
         for (const elem of this.alarmCollection) {
             if (id === elem.id) {
                 console.error();
+                return `Таймер ${id} уже существует`;
             }
-        }
+        };
 
         const newTimer = {
             id,
@@ -53,21 +54,22 @@ class AlarmClock {
                 alarmClock.callback();
             }
         }
-        //Version not work Refine
-        if (this.timerId === null) {
+        //Calls several times
+        // if (this.timerId === null) {
 
-            let timerID = setInterval(() => {
+        //     let timerID = setInterval(() => {
+        //         this.alarmCollection.forEach(elem => checkClock(elem));
+        //         this.timerId = timerID;
+        //     }, 10000);
+        // }
+
+        //Calls once
+        let timerID = setInterval(() => {
+            if (this.timerId === null) {
                 this.alarmCollection.forEach(elem => checkClock(elem));
                 this.timerId = timerID;
-            }, 10000);
-        }
-
-        //Version work
-        // let timerID = setInterval(() => {
-        //   if(this.timerId === null){
-        //     this.alarmCollection.forEach(elem => checkClock(elem));
-        //     this.timerId = timerID;
-        //   }}, 1000);
+            }
+        }, 1000);
     }
 
     stop() {
@@ -84,7 +86,7 @@ class AlarmClock {
     }
 
     clearAlarms() {
-        clearInterval(timerId);
+        clearInterval(this.timerId);
         this.alarmCollection.splice(0, this.alarmCollection.length);
 
     }
